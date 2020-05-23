@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# cmd memo
+cmd.md
+
+# config file
+Chat/config.ini
