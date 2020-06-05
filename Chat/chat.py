@@ -3,14 +3,15 @@ import configparser
 
 def get_num():
     config_ini = configparser.ConfigParser()
-    with open('./chat/config.ini') as fin:　# Related path from execute file
+    with open('./Chat/config.ini') as fin: # Related path from execute file
         config_ini.read_file(fin, 'UTF-8')
     conn = MySQLdb.connect(
         host=config_ini['DB']['host'],
         port=int(config_ini['DB']['port']),
         db=config_ini['DB']['database'],
         user=config_ini['DB']['user'],
-        passwd=config_ini['DB']['password']
+        passwd=config_ini['DB']['password'], 
+        charset='utf8'
         )
     
     cur = conn.cursor()

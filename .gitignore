@@ -132,4 +132,6 @@ dmypy.json
 cmd.md
 
 # config file
+config.ini
 Chat/config.ini
+shiri/config.ini
