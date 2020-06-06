@@ -1,5 +1,6 @@
-from flask import Flask, jsonify # pip install flask
+from flask import Flask, jsonify, request # pip install flask
 import configparser 
+import json
 
 from Chat import chat
 from Shiri import shiri
@@ -18,6 +19,24 @@ def chat_get_num():
 @app.route('/shiri/status', methods=['GET'])
 def shiri_get_status():
     ansjson = shiri.get_data()
+
+    response = jsonify(ansjson)
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
+
+@app.route('/shiri/post', methods=['POST'])
+def shiri_post():
+    request_json = json.loads(request.data.decode('utf-8'))
+    print(request_json)
+    ansjson = shiri.post_data(request_json["name"])
+
+    response = jsonify(ansjson)
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
+
+@app.route('/shiri/reset', methods=['POST'])
+def shiri_reset():
+    ansjson = shiri.post_reset()
 
     response = jsonify(ansjson)
     response.headers["Access-Control-Allow-Origin"] = "*"
